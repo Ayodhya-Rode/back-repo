@@ -1,5 +1,8 @@
 import { useForm } from "react-hook-form";
 import axios from "axios"
+import {Link} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+
 
 const Login = () => {
     const {
@@ -8,6 +11,8 @@ const Login = () => {
     formState: { errors, isSubmitting },
     
   } = useForm();
+  
+const navigate = useNavigate();
 
 async function submitClick(data) {
   try {
@@ -18,7 +23,7 @@ async function submitClick(data) {
     );
 
     console.log("Login success:", res.data);
-    alert("Login successful");
+    navigate("/dashboard");
 
   } catch (err) {
     if (err.response) {
@@ -75,12 +80,12 @@ async function submitClick(data) {
 
     <div className="text-center text-sm text-zinc-400">
       Already have an account?{" "}
-      <a
-        href="/"
+      <Link
+        to="/"
         className="text-indigo-500 hover:underline hover:text-indigo-400"
       >
         Register
-      </a>
+      </Link>
     </div>
   </div>
 </form>
